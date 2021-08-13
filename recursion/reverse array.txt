@@ -1,0 +1,13 @@
+def revarr(arr,i,j):
+    if i<j:
+        #print(i,j)
+        arr[i],arr[j]=arr[j],arr[i]
+        return revarr(arr,i+1,j-1)
+    return arr
+    
+    
+print('enter array: ')
+arr=list(map(int,input().split(' ')))
+i=0
+j=len(arr)
+print(revarr(arr,i,j-1))

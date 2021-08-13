@@ -1,0 +1,14 @@
+from collections import Counter
+
+l = ["a", "b", "a", "c", "a", "b"]
+c = Counter(l)
+print(c)
+
+max_count = 0
+res = -1
+for i in c:
+    if (max_count < c[i]):
+        res = i
+        max_count = c[i]
+         
+print(res)

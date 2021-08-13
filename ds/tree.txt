@@ -1,0 +1,76 @@
+#TREE
+
+class BinarySearchTreeNode:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+    def add_child(self,data):
+        if data==self.data:
+            return
+        elif data<self.data:
+            if self.left:
+                self.left.add_child(data)
+            else:
+                self.left=BinarySearchTreeNode(data)
+        else:
+            if self.right:
+                self.right.add_child(data)
+            else:
+                self.right=BinarySearchTreeNode(data)
+    def search(self,data):
+        if data==self.data:
+            return True
+        if data<self.data:
+            if self.left:
+                return self.left.search(data)
+            else:
+                return False
+        if data>self.data:
+            if self.right:
+                return self.right.search(data)
+            else:
+                return False
+
+        
+    def Inorder_traversal(self):
+        elements=[]
+        if self.left:
+            elements+=self.left.Inorder_traversal()
+        elements.append(self.data)
+        if self.right:
+            elements+=self.right.Inorder_traversal()
+        
+        return elements
+        
+    def Preoder_traversal(self):
+        elements=[self.data]
+        if self.left:
+            elements+=self.left.Preoder_traversal()
+        if self.right:
+            elements+=self.right.Preoder_traversal()
+            
+        return elements
+
+
+        
+def build_tree(elements):
+    print('Printing these elements in Inorder_traversal :',elements)
+    root=BinarySearchTreeNode(elements[0])
+    for i in range(1,len(elements)):
+        root.add_child(elements[i])
+    
+    return root
+
+if __name__=='__main__':
+    numbers_tree = build_tree([17, 4, 1, 20, 9, 23, 18, 34])
+    print("In order traversal gives this sorted list:",numbers_tree.Inorder_traversal())
+    
+    print("Pre order traversal gives this sorted list:",numbers_tree.Preoder_traversal())
+    
+    countries = ["India","Pakistan","Germany", "USA","China","India","UK","USA"]
+    country_tree = build_tree(countries)
+
+    print("UK is in the list? ", country_tree.search("UK"))
+    print("Sweden is in the list? ", country_tree.search("Sweden"))
+            

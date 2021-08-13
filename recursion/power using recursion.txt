@@ -1,0 +1,12 @@
+def ppow(x,y):
+    temp = 0
+    if y==0:
+        return 1
+    temp = ppow(x, int(y / 2))
+    if y%2==0:
+        return temp * temp;
+    else:
+        return x * temp * temp;
+x=int(input())
+n=int(input())
+print(ppow(x,n))

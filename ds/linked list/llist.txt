@@ -1,0 +1,85 @@
+#LINKED LIST
+
+class Node:
+    def __init__(self,data=None,next=None):
+        self.data=data
+        self.next=next
+        
+class LinkedList:
+    def __init__(self,head=None):
+        self.head=head
+        
+    def ListLength(self):
+        ptr=self.head
+        count=0
+        while ptr:
+            count+=1
+            ptr=ptr.next
+        return count
+        
+    def display(self):
+        re=''
+        ptr=self.head
+        
+        while ptr:
+            re+=str(ptr.data)+' '
+            ptr=ptr.next
+            
+        if len(re):
+            print(re)
+        else:
+            print("LinkedList is empty :>")
+            
+    def add_in_begin(self, data):
+        node=Node(data,self.head)
+        self.head=node
+        
+    def add_in_end(self,data):
+        if self.head == None:
+            self.head = Node(data,None)
+            return
+        
+        ptr=self.head
+        while ptr.next:
+            ptr=ptr.next
+        ptr.next=Node(data,None)
+        
+    def add_position(self,pos,data):
+        if pos<0 or pos>self.ListLength():
+            raise Exception("Position out of LinkedList")
+        elif pos==0:
+            self.add_in_begin(data)
+        elif pos==self.ListLength():
+            self.add_in_end(data)
+        else:
+            ptr=self.head
+            count=0
+            while count<pos-1:
+                ptr=ptr.next
+                count+=1
+            node=Node(data,ptr.next)
+            ptr.next=node
+            
+            
+if __name__ == '__main__':
+    l=LinkedList()
+    node1 = Node(10)
+    node2 = Node(15)
+    node3 = Node(20)
+  
+    # connecting the nodes
+    l.head = node1
+    node1.next = node2
+    node2.next = node3
+    l.add_in_begin(45)
+    l.add_in_end(65)
+    l.add_in_begin(21)
+    l.add_position(4,5)
+    
+    l.display()
+    print(l.ListLength())
+
+
+        
+            
+            

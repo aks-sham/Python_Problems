@@ -1,0 +1,12 @@
+def selectsort(arr):
+    for i in range(len(arr)):
+        cm=i
+        for j in range(i+1,len(arr)):
+            if arr[j]<arr[cm]:
+                cm=j
+                
+        arr[i],arr[cm]=arr[cm],arr[i]
+    return arr
+if __name__=='__main__':
+    l=list(map(int,input().split(' ')))
+    print(selectsort(l))

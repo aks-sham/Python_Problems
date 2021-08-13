@@ -1,0 +1,9 @@
+def arraysum(arr,n):
+    if n==1:
+        return arr[0]
+    n-=1
+    return arr[0]+arraysum(arr[1:],n)
+print('Enter elements')
+arr=list(map(int, input().split(' ')))
+n=len(arr)
+print('sum:', arraysum(arr,n))
